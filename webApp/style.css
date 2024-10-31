@@ -1,0 +1,166 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+#imageOutput,
+#metricsOutput {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#metricsOutput {
+  padding: 20px;
+}
+
+#imageOutput img {
+  max-width: 100%; /* Allow the image to take up the full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#imageOutput {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 200px; /* Set a minimum height for vertical centering (optional) */
+}
+
+#dashboardOutput {
+  display: flex;
+  justify-content: flex-start; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 200px; /* Set a minimum height for vertical centering (optional) */
+}
+
+button {
+  margin-right: 10px;
+}
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#plotChartLeft,
+#plotChartRight,
+#cpuTempPlot,
+#cpuUsagePlot,
+#downloadSpeedPlot,
+#uploadSpeedPlot {
+  max-width: 100%;
+  height: 400px;
+}
+
+#imageOutput,
+.chart-box {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS */
+.button-87 {
+  margin: 10px;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  background-image: linear-gradient(
+    45deg,
+    #4a5568 0%,
+    #2d3748 100%
+  ); /* Muted gray gradient */
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+}
+
+.button-87:hover {
+  background-position: right center;
+  background-image: linear-gradient(
+    45deg,
+    #2d3748 0%,
+    #1a202c 100%
+  ); /* Darker on hover */
+  color: #fff;
+  text-decoration: none;
+}
+
+.button-87:active {
+  transform: scale(0.95);
+}
+
+header {
+  box-shadow: 0px 0px 14px -7px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  background-image: linear-gradient(
+    45deg,
+    #2c7a7b 0%,
+    #285e61 100%
+  ); /* Muted teal gradient */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 1px 0px 3px rgba(0, 0, 0, 0.5);
+}
+
+.rawData {
+  box-shadow: 0px 0px 14px -7px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  background-image: linear-gradient(
+    45deg,
+    #2c7a7b 0%,
+    #285e61 100%
+  ); /* Muted teal gradient */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 1px 0px 3px rgba(0, 0, 0, 0.5);
+}
+
+#lastUpdated {
+  font-size: 16px;
+  color: #333;
+  font-weight: normal;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0072ff; /* Bottom border */
+  display: inline-block;
+}
+
+.rowItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Aligns divs equally */
+  margin-top: 20px;
+}
+
+.rowItems > div,
+.chart-box {
+  width: 45%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-title {
+  margin: 0px;
+}

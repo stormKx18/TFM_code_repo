@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="index.js" defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body>
+    <header>IoT Dashboard</header>
+    <button class="button-87" role="button" id="fetchImage">
+      Fetch IoT Image
+    </button>
+    <button class="button-87" role="button" id="fetchMetrics">
+      Fetch IoT Metrics
+    </button>
+    <div id="lastUpdated">Last Updated:</div>
+    <div class="rowItems">
+      <div id="imageOutput"></div>
+      <div id="imageDescription"></div>
+    </div>
+
+    <div class="rowItems">
+      <div>
+        <p class="card-title">Current Status</p>
+        <div id="dashboardOutput"></div>
+      </div>
+      <div class="chart-box">
+        <p class="card-title">External Temperature (°C)</p>
+        <canvas id="extTempPlot"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart Container 1-->
+    <div class="chart-container">
+      <div class="chart-box">
+        <label for="downloadSpeedPlot">Download Speed (Mbps) </label>
+        <canvas id="downloadSpeedPlot"></canvas>
+      </div>
+      <div class="chart-box">
+        <label for="uploadSpeedPlot">Upload Speed (Mbps) </label>
+        <canvas id="uploadSpeedPlot"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart Container 2-->
+    <div class="chart-container">
+      <div class="chart-box">
+        <label for="cpuTempPlot">CPU Temperature (°C) </label>
+        <canvas id="cpuTempPlot"></canvas>
+      </div>
+      <div class="chart-box">
+        <label for="cpuUsagePlot">CPU Usage (%) </label>
+        <canvas id="cpuUsagePlot"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart Container 3-->
+    <div class="chart-container">
+      <div class="chart-box">
+        <p class="card-title">Network devices (Count)</p>
+        <canvas id="devicesPlot"></canvas>
+      </div>
+      <div class="chart-box">
+        <label for="parameterSelectRight">Right Plot: </label>
+        <select id="parameterSelectRight">
+          <option value="cpu_usage">CPU Usage</option>
+          <option value="memory_used">Memory Used</option>
+          <option value="memory_total">Memory Total</option>
+          <option value="disk_used" selected>Disk Used</option>
+          <option value="disk_total">Disk Total</option>
+          <option value="download_speed">Download Speed</option>
+          <option value="upload_speed">Upload Speed</option>
+        </select>
+        <canvas id="plotChartRight"></canvas>
+      </div>
+    </div>
+    <p class="rawData">IoT Raw Data</p>
+    <p id="rawDataSub"></p>
+    <div id="metricsOutput"></div>
+  </body>
+</html>
