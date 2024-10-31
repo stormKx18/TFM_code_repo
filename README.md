@@ -21,7 +21,7 @@ Este repositorio contiene el código y archivos relevantes para el Trabajo de Fi
 
 - **lambda_functions**: Contiene las funciones Lambda implementadas en AWS para procesar y manejar datos y archivos en DynamoDB y S3.
 
-  - [`get_Image_URL_from_S3.py`](./lambda_functions/get_Image_URL_from_S3.js): Genera URLs prefirmadas para acceder a imágenes almacenadas en Amazon S3. Tiempo de respuesta promedio: **36.4 ms**.
+  - [`get_Image_URL_from_S3.py`](./lambda_functions/get_Image_URL_from_S3.py): Genera URLs prefirmadas para acceder a imágenes almacenadas en Amazon S3. Tiempo de respuesta promedio: **36.4 ms**.
   - [`getDynamoData.js`](./lambda_functions/getDynamoData.js): Realiza consultas a DynamoDB. Tiempo de respuesta promedio: **892 ms** (máximo de 1.86 s en consultas complejas).
   - [`sendValidDataDynamoDB_dev.js`](./lambda_functions/sendValidDataDynamoDB_dev.js): Valida y almacena datos en DynamoDB. Tiempo de respuesta promedio: **844 ms**.
     lambda_functions/ sendValidDataDynamoDB_dev.js
