@@ -6,17 +6,17 @@
 
 **Universidad Internacional de Valencia**
 
-**TITULACIÓN** Máster Universitario en Big Data y Ciencia de Datos
+**TITULACIÓN:** Máster Universitario en Big Data y Ciencia de Datos
 
-**TFM** T-057 Implementación de un almacén de datos para datos de IOT
+**TFM:** T-057 Implementación de un almacén de datos para datos de IOT
 
-**PRESENTA** Jaime Tamayo, Victor Christian
+**PRESENTA:** Jaime Tamayo, Victor Christian
 
-**DIRECTOR DEL TFM** Martínez Pérez, José Luis
+**DIRECTOR DEL TFM:** Martínez Pérez, José Luis
 
-**CURSO** 2023-2024
+**CURSO:** 2023-2024
 
-**FECHA** 30 de Octubre de 2024
+**FECHA:** 30 de Octubre de 2024
 
 ## Descripción
 
