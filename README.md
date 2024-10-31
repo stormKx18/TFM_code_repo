@@ -1,6 +1,22 @@
 # TFM_code_repo
 
-TFM: Implementación de un almacén de datos para datos de IOT
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
+[![Node.js](https://img.shields.io/badge/node.js-v14.17.6-green.svg)](https://nodejs.org/en/download/)
+
+**Universidad Internacional de Valencia**
+
+**TITULACIÓN** Máster Universitario en Big Data y Ciencia de Datos
+
+**TFM** T-057 Implementación de un almacén de datos para datos de IOT
+
+**PRESENTA** Jaime Tamayo, Victor Christian
+
+**DIRECTOR DEL TFM** Martínez Pérez, José Luis
+
+**CURSO** 2023-2024
+
+**FECHA** 30 de Octubre de 2024
 
 ## Descripción
 
