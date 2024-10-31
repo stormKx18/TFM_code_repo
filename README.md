@@ -24,6 +24,7 @@ Este repositorio contiene el código y archivos relevantes para el Trabajo de Fi
   - [`get_Image_URL_from_S3.js`](./lambda_functions/get_Image_URL_from_S3.js): Genera URLs prefirmadas para acceder a imágenes almacenadas en Amazon S3. Tiempo de respuesta promedio: **36.4 ms**.
   - [`getDynamoData.js`](./lambda_functions/getDynamoData.js): Realiza consultas a DynamoDB. Tiempo de respuesta promedio: **892 ms** (máximo de 1.86 s en consultas complejas).
   - [`sendValidDataDynamoDB_dev.js`](./lambda_functions/sendValidDataDynamoDB_dev.js): Valida y almacena datos en DynamoDB. Tiempo de respuesta promedio: **844 ms**.
+    lambda_functions/ sendValidDataDynamoDB_dev.js
   - [`sendValidDataS3_dev.js`](./lambda_functions/sendValidDataS3_dev.js): Valida y almacena datos en Amazon S3. Tiempo de respuesta promedio: **949 ms**.
 
 - **webApp**: Archivos de la aplicación web para el monitoreo y visualización de datos de dispositivos IoT.
