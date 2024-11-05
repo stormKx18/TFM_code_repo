@@ -3,7 +3,7 @@ import csv
 
 # Configura el cliente de DynamoDB
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  # Cambia la región si es necesario
-table = dynamodb.Table('myIOTDynamoDB_dev2')
+table = dynamodb.Table('myIOTDynamoDB_dev3')
 
 # Función para escanear la tabla DynamoDB
 def scan_table(table):
@@ -21,7 +21,7 @@ def scan_table(table):
 data = scan_table(table)
 
 # Guardar los datos en un archivo CSV
-csv_filename = 'myIOTDynamoDB_dev2_data.csv'
+csv_filename = 'myIOTDynamoDB_dev2_data_v3.csv'
 with open(csv_filename, mode='w', newline='') as csv_file:
     if len(data) > 0:
         # Obtener las claves del primer elemento como encabezados del CSV
