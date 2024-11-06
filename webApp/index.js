@@ -140,7 +140,10 @@ function displayMetrics(data) {
 <strong>Download Speed:</strong> ${item.download_speed.N} Mbps <br>
 <strong>Upload Speed:</strong> ${item.upload_speed.N} Mbps <br>
 <strong>Network Devices:</strong> ${item.number_of_hosts.N} hosts <br>
-<strong>External Temperature:</strong> ${item.external_temperature.N} °C  <hr>
+<strong>Temperature:</strong> ${item.temperature.N} °C  <br>
+<strong>Humidity:</strong> ${item.humidity.N} % <br>
+<strong>Wind speed:</strong> ${item.wind_speed.N} m/s <br>
+<strong>Wind direction:</strong> ${item.wind_direction.N} °  <hr>
 `;
     metricsOutputDiv.innerHTML += entry;
   });
@@ -248,7 +251,10 @@ function updateIoTDashboard(parsedBody) {
   <p><strong>Download Speed:</strong> ${item.download_speed.N} Mbps </p>
   <p><strong>Upload Speed:</strong> ${item.upload_speed.N} Mbps </p>
   <p><strong>Network Devices:</strong> ${item.number_of_hosts.N} hosts </p> 
-  <p><strong>External Temperature:</strong> ${item.external_temperature.N} °C </p> 
+  <p><strong>Temperature:</strong> ${item.temperature.N} °C </p> 
+  <p><strong>Humidity:</strong> ${item.humidity.N} °C </p> 
+  <p><strong>Wind speed:</strong> ${item.wind_speed.N} m/s </p> 
+  <p><strong>Wind direction:</strong> ${item.wind_direction.N} ° </p> 
   </div>
   `;
 
@@ -509,7 +515,7 @@ function plotExternalTemperature() {
     .map((item) => new Date(item.time.N * 1000).toLocaleTimeString())
     .reverse(); // Reverse the order so latest values appear on the right;
   const externalTempValues = fetchedData
-    .map((item) => parseFloat(item.external_temperature.N))
+    .map((item) => parseFloat(item.temperature.N))
     .reverse(); // Reverse the order;
 
   // Get the context for the extTempPlot canvas
