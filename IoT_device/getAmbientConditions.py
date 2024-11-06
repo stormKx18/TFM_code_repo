@@ -20,7 +20,7 @@ def get_ambient_conditions():
             if temperature_element and humidity_element:
                 temperature = float(temperature_element.get_text())
                 humidity = float(humidity_element.get_text())
-                wind_speed=float(wind_speed_element.get_text())
+                wind_speed=float(wind_speed_element.get_text())/ 3.6
                 wind_direction=float(wind_direction_element)
                 return [temperature, humidity, wind_speed, wind_direction]
             else:

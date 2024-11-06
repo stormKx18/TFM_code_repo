@@ -7,7 +7,7 @@ const dynamoDBClient = new DynamoDBClient();
 const dynamoDB = DynamoDBDocumentClient.from(dynamoDBClient);
 
 //  DynamoDB table name
-const TABLE_NAME = "myIOTDynamoDB_dev3";
+const TABLE_NAME = "myIOTDynamoDB_dev4";
 
 export const handler = async (event) => {
   // Extract data from the event object
@@ -23,7 +23,10 @@ export const handler = async (event) => {
     download_speed,
     upload_speed,
     number_of_hosts,
-    external_temperature,
+    temperature,
+    humidity,
+    wind_speed,
+    wind_direction,
   } = event;
 
   // Ensure time is a number
@@ -44,7 +47,10 @@ export const handler = async (event) => {
       download_speed: Number(download_speed), // Attribute, converted to Number
       upload_speed: Number(upload_speed), // Attribute, converted to Number
       number_of_hosts: Number(number_of_hosts), // Attribute, converted to Number
-      external_temperature: Number(external_temperature), // Attribute, converted to Number
+      temperature: Number(temperature), // Attribute, converted to Number
+      humidity: Number(humidity), // Attribute, converted to Number
+      wind_speed: Number(wind_speed), // Attribute, converted to Number
+      wind_direction: Number(wind_direction), // Attribute, converted to Number
     },
   };
 
