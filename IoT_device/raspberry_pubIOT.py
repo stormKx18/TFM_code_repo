@@ -26,6 +26,11 @@ KEY_FILE = "raspberry_pi_v2.private.key"
 MESSAGE_COUNT = 0  # 0 for infinite messages
 WAIT_TIME = 5
 
+#Ambient metrics
+# Initialize a global variable to store the last valid values
+last_valid_conditions = [-100, -100, -100, -100]  # Initial placeholder values
+
+
 # AWS S3 bucket information
 BUCKET_NAME = 'myiotimages'
 S3_KEY = 'uploaded_image.jpg'  # Name of the image in S3
@@ -152,39 +157,45 @@ def upload_to_s3(image_path, bucket_name, s3_key):
         print("Credentials not available.")
 
 def get_ambient_conditions():
-    METRICS=4
+    global last_valid_conditions
+    METRICS = 4
     url = "https://www.meteored.mx/ciudad-de-mexico/historico"
+    
     try:
-        response = requests.get(url, timeout=10)  # Agrega un timeout en caso de que la solicitud tarde demasiado
+        response = requests.get(url, timeout=10)  # Add a timeout in case the request takes too long
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Selecciona los elementos de temperatura y humedad
+            # Select the temperature, humidity, wind speed, and wind direction elements
             temperature_element = soup.select_one("#ult_dato_temp")
             humidity_element = soup.select_one("#ult_dato_hum")
             wind_speed_element = soup.select_one("#ult_dato_velviento")
             wind_direction_element_raw = soup.select_one("#ult_dato_dirviento")
-            wind_direction_element= re.search(r"\((\d+)", wind_direction_element_raw.get_text()).group(1)
-            # Verifica que ambos elementos existen antes de intentar extraer los datos
+            wind_direction_element = re.search(r"\((\d+)", wind_direction_element_raw.get_text()).group(1)
+            
+            # Verify that both elements exist before attempting to extract data
             if temperature_element and humidity_element:
                 temperature = float(temperature_element.get_text())
                 humidity = float(humidity_element.get_text())
                 wind_speed = round(float(wind_speed_element.get_text()) / 3.6, 3)
-                wind_direction=float(wind_direction_element)
-                return [temperature, humidity, wind_speed, wind_direction]
+                wind_direction = float(wind_direction_element)
+                
+                # Update the last valid conditions with the new values
+                last_valid_conditions = [temperature, humidity, wind_speed, wind_direction]
+                return last_valid_conditions
             else:
-                print("No se encontraron los elementos de temperatura o humedad.")
-                return [-100]*METRICS
+                print("Temperature or humidity elements not found.")
+                return last_valid_conditions  # Return the last valid values if elements are missing
         else:
-            print(f"Error al acceder a la página. Código de estado: {response.status_code}")
-            return [-100]*METRICS
+            print(f"Error accessing the page. Status code: {response.status_code}")
+            return last_valid_conditions  # Return the last valid values if the request failed
     except requests.exceptions.RequestException as e:
-        print(f"Error de red al obtener la temperatura y humedad: {e}")
-        return [-100]*METRICS
+        print(f"Network error while fetching temperature and humidity: {e}")
+        return last_valid_conditions  # Return the last valid values if a network error occurs
     except ValueError as e:
-        print(f"Error al convertir los datos a números: {e}")
-        return [-100]*METRICS
-    
+        print(f"Error converting data to numbers: {e}")
+        return last_valid_conditions  # Return the last valid values if conversion fails
+      
 if __name__ == '__main__':
     # Create a MQTT connection
     mqtt_connection = mqtt_connection_builder.mtls_from_path(

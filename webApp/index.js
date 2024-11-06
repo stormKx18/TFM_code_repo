@@ -104,6 +104,9 @@ document.getElementById("fetchMetrics").addEventListener("click", () => {
       plotCPUData(); // Plot the CPU Temperature and CPU Usage charts
       plotSpeedData(); // Plot Download Speed and Upload Speed charts
       plotExternalTemperature(); // Plot the external temperature
+      plotExternalHumidity(); //Plot the humidity
+      plotWindSpeed(); //Plot wind speed
+      plotWindDirectionLine();
     })
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
@@ -146,68 +149,6 @@ function displayMetrics(data) {
 <strong>Wind direction:</strong> ${item.wind_direction.N} °  <hr>
 `;
     metricsOutputDiv.innerHTML += entry;
-  });
-
-  plotSelectedParameter("Right");
-}
-
-document
-  .getElementById("parameterSelectRight")
-  .addEventListener("change", () => plotSelectedParameter("Right"));
-
-function plotSelectedParameter(plotSide) {
-  const parameterSelect =
-    plotSide === "Left"
-      ? document.getElementById("parameterSelectLeft").value
-      : document.getElementById("parameterSelectRight").value;
-
-  const labels = fetchedData
-    .map((item) => new Date(item.time.N * 1000).toLocaleTimeString())
-    .reverse(); // Reverse the order so latest values appear on the right;
-  const values = fetchedData
-    .map((item) => parseFloat(item[parameterSelect].N))
-    .reverse(); // Reverse the order;;
-
-  const chartId = plotSide === "Left" ? "plotChartLeft" : "plotChartRight";
-  const ctx = document.getElementById(chartId).getContext("2d");
-
-  if (window["myChart" + plotSide]) {
-    window["myChart" + plotSide].destroy();
-  }
-
-  window["myChart" + plotSide] = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: parameterSelect,
-          data: values,
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 2,
-          fill: false,
-          pointRadius: 0, // Hide the points
-        },
-      ],
-    },
-    options: {
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: "Time",
-          },
-        },
-        y: {
-          display: true,
-          title: {
-            display: true,
-            text: parameterSelect,
-          },
-        },
-      },
-    },
   });
 }
 
@@ -557,6 +498,178 @@ function plotExternalTemperature() {
             display: true,
             text: "External Temperature (°C)",
           },
+        },
+      },
+    },
+  });
+}
+
+function plotExternalHumidity() {
+  // Extract labels (time) and values for humidity
+  const labels = fetchedData
+    .map((item) => new Date(item.time.N * 1000).toLocaleTimeString())
+    .reverse(); // Reverse the order so latest values appear on the right;
+  const humidityValues = fetchedData
+    .map((item) => parseFloat(item.humidity.N))
+    .reverse(); // Reverse the order;
+
+  // Get the context for the extHumPlot canvas
+  const extHumCtx = document.getElementById("extHumPlot").getContext("2d");
+
+  // Destroy any existing chart instance to prevent duplication
+  if (window.extHumChart) {
+    window.extHumChart.destroy();
+  }
+
+  // Create a new line chart for external humidity
+  window.extHumChart = new Chart(extHumCtx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "External Humidity (%)",
+          data: humidityValues,
+          borderColor: "rgba(54, 162, 235, 1)", // Example color
+          borderWidth: 2,
+          fill: false,
+          pointRadius: 0, // Hide the points
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Humidity (%)",
+          },
+        },
+      },
+    },
+  });
+}
+
+function plotWindSpeed() {
+  // Extract labels (time) and values for wind speed
+  const labels = fetchedData
+    .map((item) => new Date(item.time.N * 1000).toLocaleTimeString())
+    .reverse(); // Reverse the order so latest values appear on the right;
+  const windSpeedValues = fetchedData
+    .map((item) => parseFloat(item.wind_speed.N))
+    .reverse(); // Reverse the order;
+
+  // Get the context for the windSpeedPlot canvas
+  const windSpeedCtx = document
+    .getElementById("windSpeedPlot")
+    .getContext("2d");
+
+  // Destroy any existing chart instance to prevent duplication
+  if (window.windSpeedChart) {
+    window.windSpeedChart.destroy();
+  }
+
+  // Create a new line chart for wind speed
+  window.windSpeedChart = new Chart(windSpeedCtx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Wind Speed (m/s)",
+          data: windSpeedValues,
+          borderColor: "rgba(75, 192, 192, 1)", // Example color
+          borderWidth: 2,
+          fill: false,
+          pointRadius: 0, // Hide the points
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Wind Speed (m/s)",
+          },
+        },
+      },
+    },
+  });
+}
+
+function plotWindDirectionLine() {
+  // Define the maximum wind speed for normalization (adjust based on expected max wind speed)
+  const maxSpeed = 10; // Adjust this value based on your data
+  const data = Array(360).fill(0); // Initialize data array for each degree with 0
+
+  // Iterate over each data point to populate the wind direction and speed
+  fetchedData.forEach((item) => {
+    const windDirection = Math.round(parseFloat(item.wind_direction.N)); // Wind direction in degrees
+    const windSpeed = parseFloat(item.wind_speed.N); // Wind speed
+
+    // Normalize wind speed to fit within the chart radius (0-100 scale)
+    //const normalizedSpeed = (windSpeed / maxSpeed) * 100;
+    const normalizedSpeed = windSpeed;
+
+    // Set the normalized speed at the specific angle (wind direction)
+    data[windDirection] = normalizedSpeed;
+  });
+
+  // Get the context for the windDirPlot canvas
+  const windDirCtx = document.getElementById("windDirPlot").getContext("2d");
+
+  // Destroy any existing chart instance to prevent duplication
+  if (window.windDirChart) {
+    window.windDirChart.destroy();
+  }
+
+  // Create a polar area chart showing lines for each wind direction and speed
+  window.windDirChart = new Chart(windDirCtx, {
+    type: "polarArea",
+    data: {
+      labels: Array.from({ length: 360 }, (_, i) => `${i}°`), // Labels for each degree
+      datasets: [
+        {
+          label: "Wind Direction Lines",
+          data: data, // Use the data array with values at each direction
+          backgroundColor: "rgba(153, 102, 255, 0.5)", // Semi-transparent fill
+          borderColor: "rgba(153, 102, 255, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        r: {
+          beginAtZero: true,
+          min: 0,
+          max: 10, // Adjust based on normalized speed scale
+          title: {
+            display: true,
+            text: "Wind Speed (scaled)",
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false, // Hide legend for simplicity
         },
       },
     },

@@ -32,12 +32,36 @@
         <div id="dashboardOutput"></div>
       </div>
       <div class="chart-box">
-        <p class="card-title">External Temperature (°C)</p>
-        <canvas id="extTempPlot"></canvas>
+        <p class="card-title">Network devices (Count)</p>
+        <canvas id="devicesPlot"></canvas>
       </div>
     </div>
 
-    <!-- Chart Container 1-->
+    <!-- Chart Temperature and Humidity-->
+    <div class="chart-container">
+      <div class="chart-box">
+        <p class="card-title">Temperature (°C)</p>
+        <canvas id="extTempPlot"></canvas>
+      </div>
+      <div class="chart-box">
+        <p class="card-title">Humidity (%)</p>
+        <canvas id="extHumPlot"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart Wind Speed and  direction-->
+    <div class="chart-container">
+      <div class="chart-box">
+        <p class="card-title">Wind Speed (m/s)</p>
+        <canvas id="windSpeedPlot"></canvas>
+      </div>
+      <div class="chart-box">
+        <p class="card-title">Wind Direction (Angle) and Wind Speed (m/s)</p>
+        <canvas id="windDirPlot"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart Download/Upload speed-->
     <div class="chart-container">
       <div class="chart-box">
         <label for="downloadSpeedPlot">Download Speed (Mbps) </label>
@@ -61,26 +85,6 @@
       </div>
     </div>
 
-    <!-- Chart Container 3-->
-    <div class="chart-container">
-      <div class="chart-box">
-        <p class="card-title">Network devices (Count)</p>
-        <canvas id="devicesPlot"></canvas>
-      </div>
-      <div class="chart-box">
-        <label for="parameterSelectRight">Right Plot: </label>
-        <select id="parameterSelectRight">
-          <option value="cpu_usage">CPU Usage</option>
-          <option value="memory_used">Memory Used</option>
-          <option value="memory_total">Memory Total</option>
-          <option value="disk_used" selected>Disk Used</option>
-          <option value="disk_total">Disk Total</option>
-          <option value="download_speed">Download Speed</option>
-          <option value="upload_speed">Upload Speed</option>
-        </select>
-        <canvas id="plotChartRight"></canvas>
-      </div>
-    </div>
     <p class="rawData">IoT Raw Data</p>
     <p id="rawDataSub"></p>
     <div id="metricsOutput"></div>
