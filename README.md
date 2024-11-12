@@ -26,10 +26,9 @@ Este repositorio contiene el código y archivos relevantes para el Trabajo de Fi
 
 - **data_analysis**: Contiene scripts y notebooks para el análisis de datos extraídos de los dispositivos IoT.
 
-  - [`data_analysis.ipynb`](./data_analysis/data_analysis.ipynb): Notebook para el análisis y visualización de datos de IoT.
+  - [`data_analysis_modelos`](./data_analysis/completed_data_analysis_redmet_es.ipynb): Notebook para el análisis de series temporales de datos de IoT.
+  - [`data_analysis_IoT`](./data_analysis/completed_data_analysis_v3.ipynb): Notebook para el análisis de datos de IoT.
   - [`download_dynamoDB.py`](./data_analysis/download_dynamoDB.py): Script para descargar datos de Amazon DynamoDB.
-  - [`myIOTDynamoDB_dev2_data_clean.csv`](./data_analysis/myIOTDynamoDB_dev2_data_clean.csv): Datos procesados y limpios de DynamoDB.
-  - [`myIOTDynamoDB_dev2_data.csv`](./data_analysis/myIOTDynamoDB_dev2_data.csv): Datos crudos extraídos de DynamoDB.
 
 - **IoT_device**: Código para la configuración y publicación de datos desde dispositivos IoT.
 
