@@ -8,7 +8,7 @@
 
 **TITULACIÓN:** Máster Universitario en Big Data y Ciencia de Datos
 
-**TFM:** T-057 Implementación de un almacén de datos para datos de IOT
+**TFM:** Implementación de un almacén de datos para datos de IOT
 
 **PRESENTA:** Jaime Tamayo, Victor Christian
 
